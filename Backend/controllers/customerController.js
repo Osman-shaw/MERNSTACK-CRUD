@@ -15,5 +15,5 @@ const getAllCustomers = async (req,res) => {
     }
 }
 
-
-export default getAllCustomers;
+export default {getAllCustomers};
+ 

@@ -1,30 +1,25 @@
 import user from "../models/userModel.js";
+// create user post response
+   const createUser = async (req, res) => {
+     const { username, email, contact, age } = req.body;
+      const newUser = new User({ username, email, contact, age });
 
-// creating a get request tolist all the sysytem users
- const  get_all_users = async (req, res) => {
-    try {
-      const users = await user.find();
-      res.json(users);
+   try {
+      const savedUser = await newUser.save();
+      res.json(savedUser);
     } catch (error) {
-      console.error('Error fetching users:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
+      console.error('Error creating user:', error);
+      res.status(500).json({ error: 'Internal Server Error'});
     }
-}
-
-export default get_all_users;
+  }
 
 
-// const get_all_users =(req,res)=> {
-//     try {
-//         const users = user.find();
-//         if(users.length > 0) {
-//             res.json(ers);
-//         } catch (error) {
-//             console.error("Error fetching users:",error);
-//             res.status(500).json({error:"internal sever error"})
-//         }
-//     }
-// }
+export default {createUser};
+
+
+
+
+
 
 
 
