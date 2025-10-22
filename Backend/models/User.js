@@ -1,12 +1,9 @@
 
-// const mongoose = require ("mongoose");
 import mongoose from "mongoose";
-import {Schema as _Schema} from "mongoose";
-const Schema = _Schema;
+
 
 // user model
-const userSchema = new Schema(
-    { 
+const userSchema = new mongoose.Schema({ 
     username: {  
         type: String
      },
@@ -24,9 +21,9 @@ const userSchema = new Schema(
 
     age: {
         type: Number,
-    }
+    },
+});
 
-})
 
 const user = mongoose.model("user", userSchema);
 

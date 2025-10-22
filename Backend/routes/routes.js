@@ -10,7 +10,9 @@ import userController from "../controllers/userController.js";
 import customerController from "../controllers/customerController.js";
 
 
-router.post('/users', userController.createUser);
+router.post('/addUsers', userController.createUser);
+router.get('/users', userController.getAllUsers);
+router.get('/users/:id', userController.getUserById);
 router.get('/customers', customerController.getAllCustomers);
 
 

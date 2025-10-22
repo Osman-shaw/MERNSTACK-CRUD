@@ -1,4 +1,4 @@
-import customer from "../models/customerModel.js";
+import customer from "../models/customer.js";
 
 //  data access layer
 // retrival of information from storage or database models

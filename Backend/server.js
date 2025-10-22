@@ -11,7 +11,7 @@ import routes from "./routes/routes.js";
 
 // connection port
  const PORT = process.env.PORT || 4000
-// const mongoDB = process.env.mongoDB 
+ const mongoDB = process.env.mongoDB 
 
 
 // middlewares
