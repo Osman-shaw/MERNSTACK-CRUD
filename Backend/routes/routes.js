@@ -9,11 +9,18 @@ const router = express.Router();
 import userController from "../controllers/userController.js";
 import customerController from "../controllers/customerController.js";
 
-
-router.post('/addUsers', userController.createUser);
+// user routes
+router.post('/addUsers',userController.createUser);
 router.get('/users', userController.getAllUsers);
-router.get('/users/:id', userController.getUserById);
-router.get('/customers', customerController.getAllCustomers);
+router.get('/user/:id', userController.getUserById);
+router.put('/updateUser/:id',userController.updateUser)
+router.delete('/deleteUser/:id',userController.deleteUser)
+// customers routes
+router.post('/customers', customerController.CreateCustomers);
+router.get('/customers',customerController.getAllCustomers);
+router.get('/customers/:id',customerController.getCustomersById);
+router.put('/customers/:id', customerController.updateCustomer);
+router.delete('/customer/:id',customerController.deleteCustomer);
 
 
 export default router;

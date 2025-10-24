@@ -29,21 +29,63 @@ const getAllUsers = async (req , res) => {
 
   const getUserById = async (req,res) =>{
     try {
-       const users= User.find(u => u.id === parseInt(req.params.id));
-        res.json(users);
+       const id = req.params.id;
+       const userExit = await User.findById(id);
+       if(!userExit ) {
+         return res.status(404).json({ message: 'user not found' });
+       }
+        res.status(200).json({ message: 'User data retrieve successfully', getUserById })
+        // res.json(users);
     } catch (error){
-       console.log("error fetching a user:", error);
+       console.error("error fetching a user:", error);
        res.status(500).json({error: "internal server error"})
 
     }
   }
   
+  // update a user from the database
+
+  const updateUser = async (req ,res) => {
+
+    const userId = req.params.userId;
+    const { username, email, contact, age } = req.body;
+
+    try {
+        const updateUser = await User.findByIdAndUpdate(userId, {username, email, contact, age});
+        if(!updateUser){
+          res.status(404).json({message: "user not found"});
+        }
+        res.status(200).json({ message:'user updated successfully',updateUser})
+    } catch(error){
+         console.error('error fetching user')
+         res.status(500).json({error: 'internal server error'})
+    }
+  }
+
+//  delete a user from the database
+
+const deleteUser = async (req,res)=> {
+  const userId = req.params.userId;
+  try {
+    const deleteUser = User.findByIdAndDelete(userId)
+    if(!deleteUser){
+      res.status(404).json({message:'user cannot be updated'})
+    }
+    res.status(200).json({message:'user is updated succesfully', updateUser})
+  } catch(error){
+    console.error('error fetching user');
+    res.status(500).json({error:'internal server error'})
+  }
+}
 
 
-
-
-
-export default {createUser,getAllUsers,getUserById};
+export default {
+  createUser,
+  getAllUsers,
+  getUserById,
+  updateUser,
+  deleteUser
+};
 
 
 
